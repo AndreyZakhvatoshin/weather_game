@@ -16,9 +16,9 @@ class WeatherController extends Controller
     {
         $count = Result::select('*')->get();
         $units='metric'; //imperial
-        $id = IdGenerator::makeIdPair();
-        $firstWeather = Http::get("api.openweathermap.org/data/2.5/weather?id={$id['firstId']}&units={$units}&lang=ru&appid=1b8b763e48a2ef7f0bd49ab707fe3874")->collect();
-        $secondWeather = Http::get("api.openweathermap.org/data/2.5/weather?id={$id['secondId']}&units={$units}&lang=ru&appid=1b8b763e48a2ef7f0bd49ab707fe3874")->collect();
+        $citiesCodes = IdGenerator::makeIdPair();
+        $firstWeather = Http::get("api.openweathermap.org/data/2.5/weather?id={$citiesCodes['firstId']}&units={$units}&lang=ru&appid=1b8b763e48a2ef7f0bd49ab707fe3874")->collect();
+        $secondWeather = Http::get("api.openweathermap.org/data/2.5/weather?id={$citiesCodes['secondId']}&units={$units}&lang=ru&appid=1b8b763e48a2ef7f0bd49ab707fe3874")->collect();
         $firstCity = new City($firstWeather->all());
         $secondCity = new City($secondWeather->all());
         $game = new Game($firstCity, $secondCity);
