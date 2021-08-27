@@ -14,24 +14,13 @@ class Game
     {
         $this->firstCity = $firstCity;
         $this->secondCity = $secondCity;
-        $this->maxTemp = $firstCity->getTemp() < $secondCity->getTemp() ? $secondCity->getTemp() : $firstCity->getTemp();
+        $this->maxTemp = $firstCity->getTemp() < $secondCity->getTemp() ? $secondCity->getName() : $firstCity->getName();
     }
 
-    public function chekTemp($temp)
+    public function remember()
     {
-        if ($temp === $this->maxTemp) {
-            $result = Result::create([
-                'city_1' => $this->firstCity->getName(),
-                'city_2' => $this->secondCity->getName(),
-                'result' => 'success'
-            ]);
-            return true;
-        }
-        $result = Result::create([
-            'city_1' => $this->firstCity->getName(),
-            'city_2' => $this->secondCity->getName(),
-            'result' => 'faild'
-        ]);
-        return false;
+        request()->session()->put('winner', $this->maxTemp);
+        $lowTemp = $this->maxTemp !== $this->firstCity->getName() ? $this->firstCity->getName() : $this->secondCity->getName();
+        request()->session()->put('looser', $lowTemp);
     }
 }

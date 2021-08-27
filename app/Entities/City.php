@@ -18,7 +18,7 @@ class City
 
     public function getTemp()
     {
-        return $this->temp;
+        return floatval($this->temp);
     }
 
     public function getName()
