@@ -21,7 +21,7 @@ class Options extends Model
      *
      * @var array
      */
-    protected $fillable = ['value'];
+    protected $fillable = ['option', 'value'];
 
     public $timestamps = false;
 
