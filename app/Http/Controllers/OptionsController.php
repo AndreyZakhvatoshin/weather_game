@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Options;
+use App\Models\Result;
 use Illuminate\Http\Request;
 
 class OptionsController
 {
     public function index()
     {
+        if (empty(Options::select('value')->where('option', 'unit')->get())) {
+            Options::crete(['option' => 'unit', 'value' => 'metric']);
+        }
         $option = Options::select('value')->where('option', 'unit')->first();
-        return view('options', ['unit' => $option['value']]);
+        $result = Result::select('*')->get();
+        return view('options', ['unit' => $option['value'], 'result' => $result]);
     }
 
     public function changeUnit(Request $request): \Illuminate\Http\RedirectResponse
