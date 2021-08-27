@@ -25,13 +25,14 @@
     <body class="antialiased">
         <div class="container">
             <a href="{{route('options')}}">Настройки</a>
+            <h3>Score: {{$count}}</h3>
             <div class="row">
-                <div  class="col col-md-6">
-                    <a href="" class="btn btn-success">{{$firstCity->getName()}}</a>
-                </div>
-                <div  class="col col-md-6">
-                    <a href="" class="btn btn-success">{{$secondCity->getName()}}</a>
-                </div>
+                    <div  class="col col-md-6">
+                        <a href="{{route('check', ['check'=>$firstCity->getName(), 'second'=>$secondCity->getName()])}}" class="btn btn-success">{{$firstCity->getName()}}</a>
+                    </div>
+                    <div  class="col col-md-6">
+                        <a href="{{route('check', ['check'=>$secondCity->getName(), 'second' => $firstCity->getName()])}}" class="btn btn-success">{{$secondCity->getName()}}</a>
+                    </div>
             </div>
         </div>
     </body>

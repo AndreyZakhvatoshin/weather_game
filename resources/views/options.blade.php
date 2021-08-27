@@ -41,14 +41,35 @@
                     Fahrenheit
                 </label>
             </div>
-            <button>Изменить</button>
+            <button class="btn btn-success">Изменить</button>
         </form>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
-        <p>{{$unit}}</p>
+        <h2>История</h2>
+        <div class="container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Город 1</th>
+                    <th scope="col">Город 2</th>
+                    <th scope="col">Результат</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($result as $item)
+                    <tr>
+                        <td scope="row">{{ $item->id }}</td>
+                        <td>{{ $item->city_1 }}</td>
+                        <td>{{ $item->city_2 }}</td>
+                        <td>{{ $item->result }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
